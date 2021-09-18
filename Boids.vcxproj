@@ -77,7 +77,17 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="kernel.cu" />
+    <CudaCompile Include="main.cu" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="boid.h" />
+    <ClInclude Include="device_error.h" />
+    <ClInclude Include="dev_ptr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="boid.cpp" />
+    <ClCompile Include="device_error.cpp" />
+    <ClCompile Include="dev_ptr.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
