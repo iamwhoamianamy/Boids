@@ -2,10 +2,10 @@
 #include "cuda_runtime.h"
 
 template <class T>
-DevPtr<T>::DevPtr(const T* data)
+DevPtr<T>::DevPtr(size_t count)
 {
    cudaError_t result = cudaMalloc(static_cast<void**>(&_data),
-                                   _count * sizeof(T));
+                                   count * sizeof(T));
    if(result != cudaError_t::cudaSuccess)
       throw MallocError;
 }
@@ -17,9 +17,21 @@ DevPtr<T>::~DevPtr()
 }
 
 template<class T>
-T* DevPtr<T>::GetData() const
+T* DevPtr<T>::Get() const
 {
    return *data;
+}
+
+template<class T>
+T& DevPtr<T>::operator[](int i)
+{
+   return _data[i];
+}
+
+template<class T>
+const T& DevPtr<T>::operator[](int i) const
+{
+   return _data[i];
 }
 
 template<class T>
