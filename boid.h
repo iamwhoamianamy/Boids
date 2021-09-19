@@ -7,6 +7,7 @@ __device__ struct Boid
    Vec pos;
    Vec vel;
 
+   __device__ Boid();
    __device__ Boid(const Vec pos, const Vec vel);
    __device__ Boid(float px, float py, float vx, float vy);
 

@@ -1,5 +1,10 @@
 #include "boid.h"
 
+Boid::Boid() : pos(), vel()
+{
+
+}
+
 __device__ Boid::Boid(const Vec pos, const Vec vel) : pos(pos), vel(vel)
 {
 }
@@ -8,7 +13,7 @@ __device__ Boid::Boid(float px, float py, float vx, float vy) : pos(px, py), vel
 {
 }
 
-__device__ void Boid::UpdatePosition(float width, float height)
+__device__ void Boid::UpdatePosition(float WIDTH, float height)
 {
    pos += vel;
 
@@ -19,10 +24,10 @@ __device__ void Boid::UpdatePosition(float width, float height)
    }
    else
    {
-      if(pos.x >= width)
+      if(pos.x >= WIDTH)
       {
          vel.x *= -1;
-         pos.x = width - 1;
+         pos.x = WIDTH - 1;
       }
    }
 
