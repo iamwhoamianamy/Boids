@@ -1,6 +1,6 @@
-#include "glut_functions.h"
-#include "boid.h"
-#include "window_holder.h"
+#pragma once
+#include "glut_functions.cuh"
+#include "boid.cuh"
 
 Window* glut_functions::window;
 

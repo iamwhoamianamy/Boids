@@ -1,9 +1,16 @@
-#include "vec.h"
+#include "vec.cuh"
 
 __device__ Vec::Vec() : x(0), y(0) {}
+
+__device__ Vec::Vec(const Vec& vec)
+{
+   x = vec.x;
+   y = vec.y;
+}
+
 __device__ Vec::Vec(float x, float y) : x(x), y(y) {}
 
-__device__ Vec Vec::operator +(const Vec & rhs) const
+__device__ Vec Vec::operator +(const Vec& rhs) const
 {
    Vec res;
    res.x = this->x + rhs.x;
@@ -12,8 +19,7 @@ __device__ Vec Vec::operator +(const Vec & rhs) const
    return res;
 }
 
-
-__device__ Vec Vec::operator -(const Vec & rhs) const
+__device__ Vec Vec::operator -(const Vec& rhs) const
 {
    Vec res;
    res.x = this->x - rhs.x;

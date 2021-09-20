@@ -53,9 +53,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories);$(CudaToolkitLibDir);C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\lib\x64;cudart.lib</AdditionalLibraryDirectories>
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
+      <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -75,27 +77,37 @@
     </Link>
     <CudaCompile>
       <TargetMachinePlatform>64</TargetMachinePlatform>
+      <GenerateRelocatableDeviceCode>true</GenerateRelocatableDeviceCode>
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CudaCompile Include="boid.cu" />
+    <CudaCompile Include="help_functions.cu" />
+    <CudaCompile Include="kernels.cu" />
     <CudaCompile Include="main.cu" />
+    <CudaCompile Include="vec.cu" />
+    <CudaCompile Include="window.cu" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="boid.h" />
-    <ClInclude Include="device_error.h" />
-    <ClInclude Include="dev_ptr.h" />
-    <ClInclude Include="glut_functions.h" />
-    <ClInclude Include="vec.h" />
-    <ClInclude Include="window.h" />
-    <ClInclude Include="window_holder.h" />
+    <ClInclude Include="boid.cuh" />
+    <ClInclude Include="device_error.cuh" />
+    <ClInclude Include="dev_ptr.cuh" />
+    <ClInclude Include="glut_functions.cuh" />
+    <ClInclude Include="help_functions.cuh" />
+    <ClInclude Include="vec.cuh" />
+    <ClInclude Include="kernels.cuh" />
+    <ClInclude Include="window.cuh" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="boid.cpp" />
-    <ClCompile Include="device_error.cpp" />
-    <ClCompile Include="dev_ptr.cpp" />
-    <ClCompile Include="glut_functions.cpp" />
-    <ClCompile Include="vec.cpp" />
-    <ClCompile Include="window.cpp" />
+    <CudaCompile Include="device_error.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="dev_ptr.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
+    <CudaCompile Include="glut_functions.cu">
+      <FileType>Document</FileType>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,6 +1,6 @@
 #pragma once
 #include "GL/freeglut.h"
-#include "window.h"
+#include "window.cuh"
 
 namespace glut_functions
 {

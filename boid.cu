@@ -1,11 +1,10 @@
-#include "boid.h"
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
+#include "boid.cuh"
 
-Boid::Boid() : pos(), vel()
-{
+__device__ Boid::Boid() : pos(), vel() {}
 
-}
-
-__device__ Boid::Boid(const Vec pos, const Vec vel) : pos(pos), vel(vel)
+__device__ Boid::Boid(const Vec& pos, const Vec& vel) : pos(pos), vel(vel)
 {
 }
 
@@ -13,7 +12,7 @@ __device__ Boid::Boid(float px, float py, float vx, float vy) : pos(px, py), vel
 {
 }
 
-__device__ void Boid::UpdatePosition(float WIDTH, float height)
+__device__ void Boid::UpdatePosition(const float width, const float height)
 {
    pos += vel;
 
@@ -24,10 +23,10 @@ __device__ void Boid::UpdatePosition(float WIDTH, float height)
    }
    else
    {
-      if(pos.x >= WIDTH)
+      if(pos.x >= width)
       {
          vel.x *= -1;
-         pos.x = WIDTH - 1;
+         pos.x = width - 1;
       }
    }
 
